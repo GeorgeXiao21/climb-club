@@ -1,0 +1,275 @@
+攀岩俱乐部官网（完整成品HTML，双击直接打开）
+
+使用说明
+
+1. 全中文界面、适配手机/电脑
+
+2. 自带本地记忆桶：公告、活动报名、留言全部自动保存，刷新不丢
+
+3. 无需服务器、无需备案、零基础可用
+
+4. 包含：首页介绍、俱乐部公告、活动预约、队员展示、留言板、关于我们
+
+<!DOCTYPE html<html lang="zh<head><meta charset="UTF-8">
+
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    追风攀岩俱乐部 | 热爱不止，攀登不息<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, PingFang SC, Microsoft YaHei;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        /* 导航栏 */
+        nav {
+            background: #222;
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 15px;
+        }
+        nav a:hover {
+            color: #ff6b35;
+        }
+        /* 头部横幅 */
+        .banner {
+            background: linear-gradient(135deg, #2c3e50, #4a6984);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .banner h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        .banner p {
+            opacity: 0.9;
+        }
+        /* 通用容器 */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 15px #00000010;
+        }
+        h2 {
+            margin-bottom: 16px;
+            border-left: 4px solid #ff6b35;
+            padding-left: 12px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        button {
+            background: #ff6b35;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        button:hover {
+            background: #e55a2b;
+        }
+        .item {
+            padding: 14px;
+            border-bottom: 1px solid #eee;
+        }
+        .item:last-child {
+            border-bottom: none;
+        }
+        .time {
+            color: #999;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+<body>
+<!-- 导航栏 --><nav>
+<a href=" ><a href="#notice">最新公告<a href="#activity">活动预约</a >
+        <a href="#member">队员风采</a >
+        <a href="#message">留言</a >
+   <!-- 头部横幅 -->
+   <div class="banner"><h1></h1<p>突破高度 · 挑战自我 · 以岩会友</p >
+    <div class="container">
+       <!-- 俱乐部简介 -->
+<div id="about" class="box">
+<h2>俱乐部</h2>
+<p>追风攀岩俱乐部是本地专注于攀岩运动推广的兴趣社群，面向新手入门、进阶训练、户外野攀、团建活动。我们坚持安全、专业、热爱的原则，带领每一位爱好者感受攀岩</p ><br>
+<strong></strong>零基础新手、健身爱好者、解压运动爱好者、户外团建</p >
+           <strong>包含</strong>室内抱石、难度攀岩、户外野攀、新手公益教学、定期拉练活动</p >
+        <!-- 公告板块（带记忆存储<div id="notice" class="<h2>最新俱乐部公告</h2>
+            <input id="noticeTitle" placeholder="公告标题">
+<textarea id="noticeContent" placeholder="公告内容"></textarea>
+            <button onclick="addNotice()"></button>
+<div id="notice</div>
+       <!-- 活动预约（记忆桶存储报名数据） -->
+<div id="activity" class="box">
+<h2>攀岩</h2<input id="userName" placeholder="你的昵称/姓名">
+<input id="userPhone" placeholder="联系方式"><input id="actName" placeholder="报名活动名称（如：周末新手岩训）">
+<textarea id="actNote" placeholder="备注（经验、身高体重、有无</textarea><button onclick="signActivity()">提交报名<div</div</div><!-- 队员风采<div id="member" class="box<h2</h<input id="mName" placeholder="队员昵称">
+           <input id="mTag" placeholder="标签（新手/老手/抱石玩家/野攀爱好者）"><textarea id="mIntro" placeholder="个人</textarea<button onclick="addMember()">添加队员</button>
+           <div id="memberList"></div>
+        <!-- 留言板 -->
+        <div id="message" class="box">
+            <h2>岩友留言</h2><input id="msgName" placeholder="昵称<textarea id="msgText" placeholder="留下你的攀岩感悟、提问</textarea<button onclick="addMessage()">发表留言</button>
+            <div id="msgList"></div</div><footer>
+        追风攀岩俱乐部 © 2026  All Rights Reserved
+    <script>
+        // ========== 统一轻量化记忆桶（本地永久存储） ==========
+        function getLocal(key){
+            let d = localStorage.getItem(key);
+            return d ? JSON.parse(d) : [];
+        }
+        function saveLocal(key,data){
+            localStorage.setItem(key,JSON.stringify(data));
+        }
+
+// 公告
+function addNotice(){
+let title = document.getElementById("noticeTitle").value.trim();
+let content = document.getElementById("noticeContent").value.trim();
+if(!title||!content)return alert("请填写完整公告信息");
+let list = getLocal("clubNotice");
+list.unshift({title,content,time:new Date().toLocaleString()});
+saveLocal("clubNotice",list);
+alert("公告发布成功！");
+loadNotice();
+document.getElementById("noticeTitle").value = "";
+document.getElementById("noticeContent").value = "";
+}
+function loadNotice(){
+let list = getLocal("clubNotice");
+let wrap = document.getElementById("noticeList");
+wrap.innerHTML = "";
+if(list.length===0";return;}
+list.forEach(item=>{
+wrap.innerHTML += <div class="item"><h4>${</h4><p>${item</p > <div class="time"></div></div>;
+})
+}
+
+// 活动报名
+function signActivity(){
+let name = document.getElementById("userName").value.trim();
+let phone = document.getElementById("userPhone").value.trim();
+let act = document.getElementById("actName").value.trim();
+let note = document.getElementById("actNote").value.trim();
+if(!name||!phone||!act)return alert("姓名、联系方式、活动名称必填");
+let list = getLocal("clubActSign");
+list.unshift({name,phone,act,note,time:new Date().toLocaleString()});
+saveLocal("clubActSign",list);
+alert("报名成功！管理员可查看所有报名记录");
+loadAct();
+document.getElementById("userName").value = "";
+document.getElementById("userPhone").value = "";
+document.getElementById("actName").value = "";
+document.getElementById("actNote").value = "";
+}
+function loadAct(){
+let list = getLocal("clubActSign");
+let wrap = document.getElementById("actList");
+wrap.innerHTML = "所有报名记录（仅本机可见，自动";
+if(list.length===0)return;
+list.forEach(item=>{
+wrap.innerHTML += `
+
+<div class="item">
+                    <p><strong>报名人：</strong>${item.name}</p >
+                    <p></strong</p ><strong</strong>${</p ><strong</strong>${item.note||"无</p >
+                   <div class="time"></div></div>
+                `;
+            })
+        }
+
+// 队员展示
+function addMember(){
+let name = document.getElementById("mName").value.trim();
+let tag = document.getElementById("mTag").value.trim();
+let intro = document.getElementById("mIntro").value.trim();
+if(!name)return alert("请填写队员昵称");
+let list = getLocal("clubMember");
+list.unshift({name,tag,intro,time:new Date().toLocaleString()});
+saveLocal("clubMember",list);
+alert("队员添加成功！");
+loadMember();
+document.getElementById("mName").value = "";
+document.getElementById("mTag").value = "";
+document.getElementById("mIntro").value = "";
+}
+function loadMember(){
+let list = getLocal("clubMember");
+let wrap = document.getElementById("memberList");
+wrap.innerHTML = "";
+if(list.length===0){暂无";return;}
+list.forEach(item=>{
+wrap.innerHTML += <div class="item"><h4>${<span style="color:#ff6b35;font-size:13px">${item.tag</h4><p>${item.intro||"暂无介绍</p > </div>;
+})
+}
+
+// 留言板
+function addMessage(){
+let name = document.getElementById("msgName").value.trim();
+let text = document.getElementById("msgText").value.trim();
+if(!name||!text)return alert("昵称和留言内容必填");
+let list = getLocal("clubMessage");
+list.unshift({name,text,time:new Date().toLocaleString()});
+saveLocal("clubMessage",list);
+alert("留言成功！");
+loadMessage();
+document.getElementById("msgName").value = "";
+document.getElementById("msgText").value = "";
+}
+function loadMessage(){
+let list = getLocal("clubMessage");
+let wrap = document.getElementById("msgList");
+wrap.innerHTML = "";
+if(list.length===0){wrap.innerHTML="暂无留言，快来";return;}
+list.forEach(item=>{
+wrap.innerHTML += `
+
+<div class="item<strong>${</strong>
+<p>${item.text}</p >
+                    <div class="time">${</div>
+</div>
+                `;
+            })
+        }
+
+// 页面加载自动渲染所有数据
+window.onload = function(){
+loadNotice();
+loadAct();
+loadMember();
+loadMessage();
+
+</body>
+</html>
+```
