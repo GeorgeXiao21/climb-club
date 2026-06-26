@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edinburgh Chinese Climbing Club</title>
+    <title>爱丁堡华人攀岩俱乐部</title>
     <style>
         * {
             margin: 0;
@@ -14,6 +14,7 @@
         body {
             background-color: #f5f7fa;
             color: #333;
+            line-height: 1.6;
         }
         nav {
             background: #222;
@@ -52,34 +53,24 @@
             border-radius: 12px;
             padding: 24px;
             margin-bottom: 24px;
-            box-shadow: 0 2px 15px #00000010;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
         }
         h2 {
             margin-bottom: 16px;
             border-left: 4px solid #ff6b35;
             padding-left: 12px;
         }
-        input, textarea, button {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 15px;
-        }
-        button {
-            background: #ff6b35;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
         .item {
-            padding: 14px;
+            padding: 14px 0;
             border-bottom: 1px solid #eee;
+        }
+        .item:last-child {
+            border-bottom: none;
         }
         .time {
             color: #999;
             font-size: 13px;
+            margin-top: 4px;
         }
         footer {
             text-align: center;
@@ -91,10 +82,10 @@
 <body>
     <nav>
         <a href=" ">俱乐部简介</a >
-        <a href="#notice">公告</a >
-        <a href="#activity">活动预约</a >
-        <a href="#member">队员风采</a >
-        <a href="#message">留言</a >
+        <a href="#notice">最新公告</a >
+        <a href="#activity">常规活动</a >
+        <a href="#member">核心队员</a >
+        <a href="#contact">联系方式</a >
     </nav>
 
     <div class="banner">
@@ -103,163 +94,74 @@
     </div>
 
     <div class="container">
+        <!-- 1.俱乐部简介 固定内容 -->
         <div id="about" class="box">
             <h2>俱乐部简介</h2>
-            <p>本地华人攀岩兴趣社群，开设室内抱石、难度攀、户外野攀，零基础可学，定期组织拉练、团建活动。</p >
+            <p>本俱乐部为爱丁堡本地华人攀岩社群，面向留学生、华人上班族开放，零基础新手也可参与。
+            日常开设室内抱石、难度线路训练，定期组织郊外户外野攀、月度团建交流活动。
+            我们提供基础装备科普、入门教学，氛围轻松友好，欢迎所有喜欢攀岩的朋友加入。</p >
         </div>
 
+        <!-- 2.固定公告，写死内容，无输入框 -->
         <div id="notice" class="box">
             <h2>最新公告</h2>
-            <input id="noticeTitle" placeholder="公告标题">
-            <textarea id="noticeContent" placeholder="公告内容"></textarea>
-            <button onclick="addNotice()">发布公告</button>
-            <div id="noticeList"></div>
+            <div class="item">
+                <h4>每周固定室内攀岩局安排</h4>
+                <p>每周六下午14:00-18:00，市中心岩馆集合，新手有人带，无需自带装备。</p >
+                <div class="time">发布时间：2026年6月</div>
+            </div>
+            <div class="item">
+                <h4>七月户外野攀活动预告</h4>
+                <p>七月中旬组织郊外天然岩壁野攀，会提前在社群通知报名，有经验领队带队。</p >
+                <div class="time">发布时间：2026年6月</div>
+            </div>
         </div>
 
+        <!-- 3.常规活动介绍（替换掉之前的报名表单） -->
         <div id="activity" class="box">
-            <h2>活动预约报名</h2>
-            <input id="userName" placeholder="昵称/姓名">
-            <input id="userPhone" placeholder="联系方式">
-            <input id="actName" placeholder="报名活动名称（如：周末新手岩训）">
-            <textarea id="actNote" placeholder="备注"></textarea>
-            <button onclick="signActivity()">提交报名</button>
-            <div id="actList"></div>
+            <h2>常规活动</h2>
+            <div class="item">
+                <h4>室内新手入门局</h4>
+                <p>适合从未接触攀岩的朋友，讲解基础发力、安全规范，分组练习简单线路。</p >
+            </div>
+            <div class="item">
+                <h4>进阶力量训练</h4>
+                <p>针对有基础岩友，训练指力、核心、平衡，挑战高难度抱石线路。</p >
+            </div>
+            <div class="item">
+                <h4>户外野攀出行</h4>
+                <p>每月1次近郊天然岩壁活动，体验野外攀岩风景，统一规划交通与防护装备。</p >
+            </div>
         </div>
 
+        <!-- 4.固定队员展示，无新增输入框 -->
         <div id="member" class="box">
-            <h2>队员风采</h2>
-            <input id="mName" placeholder="队员昵称">
-            <input id="mTag" placeholder="标签：新手/野攀/抱石">
-            <textarea id="mIntro" placeholder="个人攀岩简介"></textarea>
-            <button onclick="addMember()">添加队员</button>
-            <div id="memberList"></div>
+            <h2>核心队员</h2>
+            <div class="item">
+                <h4>阿凯 <span style="color:#ff6b35;font-size:13px;">领队/野攀向导</span></h4>
+                <p>攀岩5年，擅长户外线路规划，负责新手安全教学。</p >
+            </div>
+            <div class="item">
+                <h4>小琳 <span style="color:#ff6b35;font-size:13px;">室内抱石大神</span></h4>
+                <p>主攻室内抱石，日常带新手打磨基础动作。</p >
+            </div>
+            <div class="item">
+                <h4>泽宇 <span style="color:#ff6b35;font-size:13px;">活动组织</span></h4>
+                <p>负责每周室内局统筹、社群联络。</p >
+            </div>
         </div>
 
-        <div id="message" class="box">
-            <h2>岩友留言区</h2>
-            <input id="msgName" placeholder="昵称">
-            <textarea id="msgText" placeholder="留言内容"></textarea>
-            <button onclick="addMessage()">发表留言</button>
-            <div id="msgList"></div>
+        <!-- 5.联系方式（替代留言板，纯展示） -->
+        <div id="contact" class="box">
+            <h2>加入我们</h2>
+            <p>微信社群：线下参与活动可现场扫码进群<br>
+            活动地点：Edinburgh 市中心室内攀岩馆<br>
+            参与要求：无年龄、基础限制，遵守场馆安全规则即可</p >
         </div>
     </div>
 
-    <footer>爱丁堡华人攀岩俱乐部 © 2026</footer>
-
-    <script>
-        function getLocal(key){
-            let d = localStorage.getItem(key);
-            return d ? JSON.parse(d) : [];
-        }
-        function saveLocal(key,data){
-            localStorage.setItem(key,JSON.stringify(data));
-        }
-
-        function addNotice(){
-            let title = document.getElementById("noticeTitle").value.trim();
-            let content = document.getElementById("noticeContent").value.trim();
-            if(!title||!content)return alert("请填写完整");
-            let list = getLocal("clubNotice");
-            list.unshift({title,content,time:new Date().toLocaleString()});
-            saveLocal("clubNotice",list);
-            alert("发布成功");
-            loadNotice();
-            document.getElementById("noticeTitle").value = "";
-            document.getElementById("noticeContent").value = "";
-        }
-        function loadNotice(){
-            let list = getLocal("clubNotice");
-            let wrap = document.getElementById("noticeList");
-            wrap.innerHTML = list.length ? list.map(i=>`
-                <div class="item">
-                    <h4>${i.title}</h4>
-                    <p>${i.content}</p >
-                    <div class="time">${i.time}</div>
-                </div>`).join("") : "<p>暂无公告</p >";
-        }
-
-        function signActivity(){
-            let name = document.getElementById("userName").value.trim();
-            let phone = document.getElementById("userPhone").value.trim();
-            let act = document.getElementById("actName").value.trim();
-            let note = document.getElementById("actNote").value.trim();
-            if(!name||!phone||!act)return alert("姓名、电话、活动必填");
-            let list = getLocal("clubActSign");
-            list.unshift({name,phone,act,note,time:new Date().toLocaleString()});
-            saveLocal("clubActSign",list);
-            alert("报名提交成功");
-            loadAct();
-            document.getElementById("userName").value = "";
-            document.getElementById("userPhone").value = "";
-            document.getElementById("actName").value = "";
-            document.getElementById("actNote").value = "";
-        }
-        function loadAct(){
-            let list = getLocal("clubActSign");
-            let wrap = document.getElementById("actList");
-            wrap.innerHTML = list.length ? list.map(i=>`
-                <div class="item">
-                    <p><strong>报名人：</strong>${i.name}</p >
-                    <p><strong>联系方式：</strong>${i.phone}</p >
-                    <p><strong>活动：</strong>${i.act}</p >
-                    <p><strong>备注：</strong>${i.note||"无"}</p >
-                    <div class="time">${i.time}</div>
-                </div>`).join("") : "<p>暂无报名记录</p >";
-        }
-
-        function addMember(){
-            let name = document.getElementById("mName").value.trim();
-            let tag = document.getElementById("mTag").value.trim();
-            let intro = document.getElementById("mIntro").value.trim();
-            if(!name)return alert("请填写队员昵称");
-            let list = getLocal("clubMember");
-            list.unshift({name,tag,intro,time:new Date().toLocaleString()});
-            saveLocal("clubMember",list);
-            alert("队员添加成功");
-            loadMember();
-            document.getElementById("mName").value = "";
-            document.getElementById("mTag").value = "";
-            document.getElementById("mIntro").value = "";
-        }
-        function loadMember(){
-            let list = getLocal("clubMember");
-            let wrap = document.getElementById("memberList");
-            wrap.innerHTML = list.length ? list.map(i=>`
-                <div class="item">
-                    <h4>${i.name} <span style="color:#ff6b35;font-size:13px">${i.tag}</span></h4>
-                    <p>${i.intro||"暂无介绍"}</p >
-                </div>`).join("") : "<p>暂无队员展示</p >";
-        }
-
-        function addMessage(){
-            let name = document.getElementById("msgName").value.trim();
-            let text = document.getElementById("msgText").value.trim();
-            if(!name||!text)return alert("昵称和留言内容必填");
-            let list = getLocal("clubMessage");
-            list.unshift({name,text,time:new Date().toLocaleString()});
-            saveLocal("clubMessage",list);
-            alert("留言成功！");
-            loadMessage();
-            document.getElementById("msgName").value = "";
-            document.getElementById("msgText").value = "";
-        }
-        function loadMessage(){
-            let list = getLocal("clubMessage");
-            let wrap = document.getElementById("msgList");
-            wrap.innerHTML = list.length ? list.map(i=>`
-                <div class="item">
-                    <strong>${i.name}</strong>
-                    <p>${i.text}</p >
-                    <div class="time">${i.time}</div>
-                </div>`).join("") : "<p>暂无留言，快来抢沙发！</p >";
-        }
-
-        window.onload = function(){
-            loadNotice();
-            loadAct();
-            loadMember();
-            loadMessage();
-        }
-    </script>
+    <footer>
+        爱丁堡华人攀岩俱乐部 © 2026 版权所有
+    </footer>
 </body>
 </html>
