@@ -33,12 +33,32 @@
         nav a:hover {
             color: #ff6b35;
         }
-        .banner {
-            background: linear-gradient(135deg, #2c3e50, #4a6984);
-            color: #fff;
-            text-align: center;
-            padding: 60px 20px;
-        }
+	.banner {
+    		/* 引入Benny Beg攀岩背景图 */
+    		background: url("banner_bg.jpg") center center;
+    		background-size: cover;
+   	 	background-attachment: scroll;
+    		position: relative;
+    		color: #fff;
+    		text-align: center;
+    		padding: 60px 20px;
+	}
+	/* 半透明黑色遮罩，防止图片太亮看不清文字 */
+	.banner::after {
+    		content: "";
+    		position: absolute;
+    		left: 0;
+    		top: 0;
+    		width: 100%;
+    		height: 100%;
+    		background-color: rgba(0,0,0,0.45);
+    		z-index: 1;
+	}
+	/* 文字提升层级，显示在遮罩上方 */
+	.banner h1, .banner p {
+    		position: relative;
+    		z-index: 2;
+	}
         .banner h1 {
             font-size: 36px;
             margin-bottom: 12px;
